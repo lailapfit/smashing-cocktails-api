@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS spirit;
+DROP TABLE IF EXISTS recipe;
