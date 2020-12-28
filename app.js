@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
+const recipeRouter = require('./recipe/recipe-router');
+const spiritRouter = require('./spirit/spirit-router');
 
 const app = express();
 
@@ -16,12 +18,11 @@ app.use(helmet());
 
 app.use(cors());
 
-// app.use('/player', playerRouter);
-// app.use('/manager', managerRouter);
-// app.use('/roster', rosterRouter);
+app.use('/recipe', recipeRouter);
+app.use('/spirit', spiritRouter);
 
 app.get('/', (req, res) => {
-  res.send('WFFL Home!')
+  res.send('SMASHING COCKTAILS!');
 })
 
 // app.get('/xss', (req, res) => {
@@ -35,9 +36,9 @@ app.use(function errorHandler(error, req, res, next) {
     response = { error: { message: 'server error' } }
   } else {
     console.error(error)
-    response = { message: error.message, error }
+    response = { message: error.message, error };
   }
-  res.status(500).json(response)
-})
+  res.status(500).json(response);
+});
 
-module.exports = app
+module.exports = app;
