@@ -1,3 +1,4 @@
-INSERT INTO recipe(id, name, original_creator, add_photo, description, prep_time, main_spirit_id, ingredients, garnish, instructions, glass_type, level_of_difficulty, tags, photo_link) 
+INSERT INTO recipe(name, original_creator, add_photo, description, prep_time, main_spirit_id, ingredients, garnish, instructions, glass_type, level_of_difficulty, tags, photo_link) 
 VALUES 
-()
+('Margarita', '', false, 'The perfect refreshing combination of tequila and lime.', 5, 6, '{"2 oz blanco or reposado tequila", "3/4 oz lime juice", "3/4 oz orange liquor"}', 'Lime wedge', '{"If you would like, rim the glass with salt", "Combine all ingredients with ice and shake", "Strain over ice"}', 'rocks', 'easy', NULL, ''),
+('Whiskey Sour', '', false, 'Good balance of richness, citrus, frothy and sweetness.', 5, 7, '{"2 oz bourbon", "3/4 oz lemon juice", "3/4 oz simple syrup", "1 egg white"}', 'Cherry', '{"Combine all ingredients without ice to dry shake", "Add ice to shaker and shake until the shaker is cold to the touch", "Strain into glass and garnish"}', 'rocks', 'medium', NULL, '')

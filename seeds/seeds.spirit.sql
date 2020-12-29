@@ -1,4 +1,4 @@
-INSERT INTO spirit(spirit_id, name) 
+INSERT INTO spirit(name) 
 VALUES
 ('amaretto'),
 ('bourbon'),
@@ -6,4 +6,6 @@ VALUES
 ('mezcal'),
 ('rum'),
 ('tequila'),
-('whiskey')
+('whiskey'),
+('rye'),
+('scotch');
