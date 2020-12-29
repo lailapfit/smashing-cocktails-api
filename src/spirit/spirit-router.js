@@ -7,8 +7,25 @@ spiritRouter
 .get((req, res, next) => {
     SpiritService.getAllSpirits(req.app.get('db'))
     .then(spirits => {
+        if(!spirits) {
+            return res.status(404).json({
+                error: {message: 'Spirits unavailable'}
+            });
+        }
         res.send(spirits);
         res.json();
+    })
+})
+.post((req, res, next) => {
+    SpiritService.createSpirit(req.app.get('db'), req.body)
+    .then(spiritId => {
+        if(!spiritId) {
+            return res.status(404).json({
+                error: {message: 'Spirit was not created'}
+            });
+        } else {
+            return res.status(200).send('Spirit was successfully created using ID:' + spiritId);
+        }
     })
 })
 

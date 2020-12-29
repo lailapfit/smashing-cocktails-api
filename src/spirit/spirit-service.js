@@ -13,5 +13,12 @@ const SpiritService = {
     },
     updateSpiritByName(knex, name, data) {
         return knex('spirit').where({name: `${name}`}).update(data);
+    },
+    createSpirit(knex, data) {
+        let spirit = {
+            name: data.name
+        };
+        
+        return knex('spirit').returning('id').insert(spirit);
     }
 }

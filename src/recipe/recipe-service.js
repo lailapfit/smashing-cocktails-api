@@ -33,11 +33,31 @@ const RecipeService = {
         } else {
             return knex.select('*').from('recipe').where({main_spirit_id: `${spiritId}`}).orWhere({difficulty_level: `${difficultyLevel}`}).orWhere({tags: `${tags}`});
         }
+    },
+    updateRecipeById(knex, id, data) {
+        return knex('recipe').where({id: id}).update(data);
+    },
+    createRecipe(knex, data) {
+        let recipe = {};
+        if(this.verifyRecipe(data)) {
+            let spiritId = knex.select('spirit_id').from('spirit').where({name: `${data.spiritName}`});
+            recipe.name = data.name;
+            recipe.original_creator = data.original_creator || '';
+            recipe.add_photo = data.add_photo || false;
+            recipe.description = data.description;
+            recipe.prep_time = data.prep_time;
+            recipe.main_spirit_id = spiritId;
+            recipe.ingredients = data.ingredients;
+            recipe.garnish = data.garnish || '';
+            recipe.instructions = data.instructions;
+            recipe.glass_type = data.glass_type;
+            recipe.level_of_difficulty = data.level_of_difficulty;
+            recipe.tags = data.tags || '';
+            recipe.photo_link = data.photo_link || '';
+        }
+        return knex('recipe').returning('id').insert(recipe);
+    },
+    verifyRecipe(data) {
+        return (data.name && data.description && data.prep_time && data.spiritName && data.ingredients && data.instructions && data.glass_type && data.level_of_difficulty) ? true : false;
     }
-    // createWhereQuery(key, values) {
-    //     let params = values.split(',');
-    //     return params.map(p => {
-            
-    //     });
-    // } 
 }
