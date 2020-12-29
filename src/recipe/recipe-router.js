@@ -31,7 +31,7 @@ recipeRouter
 
 
 recipeRouter
-.router('/id/:recipeId')
+.route('/id/:recipeId')
 .get((req, res, next) => {
     RecipeService.getRecipeById(req.app.get('db'), req.params.recipeId)
     .then(recipe => {
@@ -61,7 +61,7 @@ recipeRouter
 })
 
 recipeRouter
-.router('/name/:name')
+.route('/name/:name')
 .get((req, res, next) => {
     RecipeService.getRecipeByName(req.app.get('db'), req.params.name)
     .then(recipe => {
@@ -81,7 +81,7 @@ recipeRouter
 
 
 recipeRouter
-.router('/spirit/:spirit')
+.route('/spirit/:spirit')
 .get((req, res, next) => {
     RecipeService.getRecipeBySpirit(req.app.get('db'), req.params.spirits)
     .then(recipe => {
@@ -100,7 +100,7 @@ recipeRouter
 })
 
 recipeRouter
-.router('/difficulty/:difficulty')
+.route('/difficulty/:difficulty')
 .get((req, res, next) => {
     RecipeService.getRecipeByDifficultyLevel(req.app.get('db'), req.params.difficulty)
     .then(recipe => {
@@ -119,7 +119,7 @@ recipeRouter
 })
 
 recipeRouter
-.router('/tag/:tag')
+.route('/tag/:tag')
 .get((req, res, next) => {
     RecipeService.getRecipeByTags(req.app.get('db'), req.params.tag)
     .then(recipe => {
@@ -138,7 +138,7 @@ recipeRouter
 })
 
 recipeRouter
-.router('/similarity/:similarity')
+.route('/similarity/:similarity')
 .get((req, res, next) => {
     RecipeService.getSimilarRecipes(req.app.get('db'), req.params.similarity)
     .then(recipe => {

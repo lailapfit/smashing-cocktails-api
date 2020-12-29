@@ -4,8 +4,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
-const recipeRouter = require('./recipe/recipe-router');
-const spiritRouter = require('./spirit/spirit-router');
+const recipeRouter = require('./src/recipe/recipe-router');
+const spiritRouter = require('./src/spirit/spirit-router');
 
 const app = express();
 
@@ -25,10 +25,10 @@ app.get('/', (req, res) => {
   res.send('SMASHING COCKTAILS!');
 })
 
-// app.get('/xss', (req, res) => {
-//   res.cookie('secretToken', '1234567890');
-//   res.sendFile(__dirname + '/xss.example.html');
-// });
+app.get('/xss', (req, res) => {
+  res.cookie('secretToken', '1234567890');
+  res.sendFile(__dirname + '/xss.example.html');
+});
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
@@ -41,4 +41,4 @@ app.use(function errorHandler(error, req, res, next) {
   res.status(500).json(response);
 });
 
-module.exports = app;
+module.exports = app
