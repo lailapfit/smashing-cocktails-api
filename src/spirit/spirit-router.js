@@ -31,7 +31,15 @@ spiritRouter
     res.json(res.spirit);
 })
 .put((req, res, next) => {
-
+    SpiritService.updateSpiritByName(req.app.get('db'), req.params.spiritName, req.body)
+    .then(spirit => {
+        if (!spirit) {
+            return res.status(404).json({
+                error: {message: 'Spirit cannot be updated'}
+            });
+        }
+        return res.status(200).send('Spirit:' + req.params.spiritName + ' successfully updated');
+    })
 })
 
 spiritRouter
@@ -39,7 +47,7 @@ spiritRouter
 .get((req, res, next) => {
     SpiritService.getSpiritNameById(req.app.get('db'), req.params.spiritId)
     .then(spirit => {
-        if(!spirit) {
+        if (!spirit) {
             return res.status(404).json({
                 error: {message: 'Spirit does not exist'}
             });
@@ -53,5 +61,13 @@ spiritRouter
     res.json(res.spirit);
 })
 .put((req, res, next) => {
-    
+    SpiritService.updateSpiritById(req.app.get('db'), req.params.spiritId, req.body)
+    .then(spirit => {
+        if (!spirit) {
+            return res.status(404).json({
+                error: {message: 'Spirit cannot be updated'}
+            });
+        }
+        return res.status(200).send('Spirit ID:' + req.params.spiritId + ' successfully updated');
+    })
 })

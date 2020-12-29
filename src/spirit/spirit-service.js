@@ -7,5 +7,11 @@ const SpiritService = {
     },
     getSpiritNameById(knex, id) {
         return knex.select('name').where({spirit_id: `${id}`});
+    },
+    updateSpiritById(knex, id, data) {
+        return knex('spirit').where({spirit_id: id}).update(data);
+    },
+    updateSpiritByName(knex, name, data) {
+        return knex('spirit').where({name: `${name}`}).update(data);
     }
 }
