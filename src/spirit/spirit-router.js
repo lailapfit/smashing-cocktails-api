@@ -88,3 +88,5 @@ spiritRouter
         return res.status(200).send('Spirit ID:' + req.params.spiritId + ' successfully updated');
     })
 })
+
+module.exports = spiritRouter;
