@@ -12,11 +12,16 @@ spiritRouter
                 error: {message: 'Spirits unavailable'}
             });
         }
-        res.send(spirits);
-        res.json();
+        res.spirits = spirits;
+        next();
     })
+    .catch(next);
+})
+.get((req, res, next) => {
+    res.json(res.spirits);
 })
 .post((req, res, next) => {
+    console.log('request: ' + req.body.name);
     SpiritService.createSpirit(req.app.get('db'), req.body)
     .then(spiritId => {
         if(!spiritId) {
@@ -26,6 +31,10 @@ spiritRouter
         } else {
             return res.status(200).send('Spirit was successfully created using ID:' + spiritId);
         }
+    })
+    .catch(err => { 
+            return res.status(404).json({error: {message: err}
+        });
     })
 })
 
@@ -55,7 +64,11 @@ spiritRouter
                 error: {message: 'Spirit cannot be updated'}
             });
         }
-        return res.status(200).send('Spirit:' + req.params.spiritName + ' successfully updated');
+        return res.status(200).send('Spirit:' + spirit + ' successfully updated');
+    })
+    .catch(err => { 
+        return res.status(404).json({error: {message: err}
+        });
     })
 })
 
@@ -85,8 +98,12 @@ spiritRouter
                 error: {message: 'Spirit cannot be updated'}
             });
         }
-        return res.status(200).send('Spirit ID:' + req.params.spiritId + ' successfully updated');
+        return res.status(200).send('Spirit ID:' + spirit + ' successfully updated');
+    })
+    .catch(err => { 
+        return res.status(404).json({error: {message: err}
+        });
     })
 })
 
-module.exports = spiritRouter;
+module.exports = spiritRouter

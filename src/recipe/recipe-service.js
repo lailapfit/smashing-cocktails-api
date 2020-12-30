@@ -14,10 +14,10 @@ const RecipeService = {
     },
     getRecipeBySpirit(knex, spirit) {
         let spiritId = knex.select('spirit_id').from('spirit').where({name: `${spirit}`});
-        return knex.select('*').from('recipe').where({main_spirit_id: `${spiritId}`});
+        return knex.select('*').from('recipe').where({main_spirit_id: spiritId});
     },
     getRecipeByDifficultyLevel(knex, difficultyLevel) {
-        return knex.select('*').from('recipe').where({difficulty_level: `${difficultyLevel}`});
+        return knex.select('*').from('recipe').where({level_of_difficulty: `${difficultyLevel}`});
     },
     getRecipeByTags(knex, tags) {
         if(tags.includes(',')) {
@@ -29,9 +29,9 @@ const RecipeService = {
     getSimilarRecipes(knex, tags, spirit, difficultyLevel) {
         let spiritId = knex.select('spirit_id').from('spirit').where({name: `${spirit}`});
         if (tags.includes(',')) {
-            return knex.select('*').from('recipe').whereRaw('tags = ?', tags.split(',')).orWhere({main_spirit_id: `${spiritId}`}).orWhere({difficulty_level: `${difficultyLevel}`});
+            return knex.select('*').from('recipe').whereRaw('tags = ?', tags.split(',')).orWhere({main_spirit_id: spiritId}).orWhere({level_of_difficulty: `${difficultyLevel}`});
         } else {
-            return knex.select('*').from('recipe').where({main_spirit_id: `${spiritId}`}).orWhere({difficulty_level: `${difficultyLevel}`}).orWhere({tags: `${tags}`});
+            return knex.select('*').from('recipe').where({main_spirit_id: spiritId}).orWhere({level_of_difficulty: `${difficultyLevel}`}).orWhere({tags: `${tags}`});
         }
     },
     updateRecipeById(knex, id, data) {
@@ -62,4 +62,4 @@ const RecipeService = {
     }
 }
 
-module.exports = RecipeService;
+module.exports = RecipeService

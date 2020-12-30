@@ -9,21 +9,22 @@ const SpiritService = {
         return knex.select('name').where({spirit_id: `${id}`});
     },
     updateSpiritById(knex, id, data) {
-        return knex('spirit').where({spirit_id: id}).update(data);
+        return knex('spirit').returning('name').where({spirit_id: id}).update(data);
     },
     updateSpiritByName(knex, name, data) {
-        return knex('spirit').where({name: `${name}`}).update(data);
+        return knex('spirit').returning('name').where({name: `${name}`}).update(data);
     },
     createSpirit(knex, data) {
         let spirit = {};
         if(this.verifySpirit(data)) {
             spirit.name = data.name;
         }
-        return knex('spirit').returning('id').insert(spirit);
+        console.log('spirit toString: ' + JSON.stringify(spirit));
+        return knex('spirit').returning('spirit_id').insert(spirit);
     },
     verifySpirit(data) {
-        return data.name ? true : false;
+        return data.hasOwnProperty('name') ? true : false;
     }
 }
 
-module.exports = SpiritService;
+module.exports = SpiritService
