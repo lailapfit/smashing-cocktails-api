@@ -25,3 +25,5 @@ const SpiritService = {
         return data.name ? true : false;
     }
 }
+
+module.exports = SpiritService;

@@ -61,3 +61,5 @@ const RecipeService = {
         return (data.name && data.description && data.prep_time && data.spiritName && data.ingredients && data.instructions && data.glass_type && data.level_of_difficulty) ? true : false;
     }
 }
+
+module.exports = RecipeService;
