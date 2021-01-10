@@ -8,4 +8,5 @@ VALUES
 ('tequila'),
 ('whiskey'),
 ('rye'),
-('scotch');
+('scotch'),
+('pisco');
