@@ -4,10 +4,7 @@ const { NODE_ENV, PORT, DATABASE_URL, TEST_DATABASE_URL } = require('./config');
 
 const db = knex({
   client: 'pg',
-  connection: {
-    database: NODE_ENV.toLowerCase() == 'test' ? TEST_DATABASE_URL : DATABASE_URL,
-    ssl: true
-  }
+  connection: NODE_ENV.toLowerCase() == 'test' ? TEST_DATABASE_URL : DATABASE_URL,
 });
 
 app.set('db', db);
