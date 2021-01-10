@@ -4,5 +4,12 @@
     "add_photo": false,
     "description": "The perfect drink to start with for any occasion. It is refreshing and bright.",
     "prep_time": 5,
-    "main_spirit": 
+    "spiritName": "pisco",
+    "ingredients": ["2 oz pisco", "3/4 oz lime juice", "3/4 oz simple syrup", "1 egg while"],
+    "garnish": "dashes of angostura bitters",
+    "instructions": ["Combine all ingredients in a shaker for a dry shake", "Add ice and shake again until shaker is cold to the touch", "Strain into glass", "Add dashes of angostura bitters (into a fun design)"],
+    "glass_type": "coupe",
+    "level_of_difficulty": "medium",
+    "tags": null,
+    "photo_link": ""
 }

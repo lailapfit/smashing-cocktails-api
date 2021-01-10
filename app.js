@@ -24,7 +24,7 @@ app.use('/recipe', recipeRouter);
 app.use('/spirit', spiritRouter);
 
 app.get('/', (req, res) => {
-  res.send('SMASHING COCKTAILS v1.1.3! Node Env: ' + process.env.NODE_ENV + ' Port: ' + process.env.PORT);
+  res.send('SMASHING COCKTAILS v1.4.6! Node Env: ' + process.env.NODE_ENV + ' Port: ' + process.env.PORT);
 })
 
 app.get('/xss', (req, res) => {
