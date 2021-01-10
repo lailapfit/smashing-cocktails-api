@@ -62,9 +62,6 @@ const RecipeService = {
         let recipe = {};
         console.log('createRecipe data: ' + JSON.stringify(data));
         if(this.validateRecipe(data)) {
-            // let tags = this.formatArray(data.tags);
-            // let ingredients = this.formatArray(data.ingredients);
-            // let instructions = this.formatArray(data.instructions);
             recipe.name = data.name;
             recipe.original_creator = data.original_creator || null;
             recipe.add_photo = data.add_photo || false;
@@ -84,19 +81,6 @@ const RecipeService = {
     },
     validateRecipe(data) {
         return (data.name && data.description && data.prep_time && data.spiritName && data.ingredients && data.instructions && data.glass_type && data.level_of_difficulty) ? true : false;
-    },
-    formatArray(arr) {
-        let arrOrString;
-        if (Array.isArray(arr)) {
-            arrOrString = '["' + arr.join('","') + '"]';
-            //arrOrString = arrWithFwdSlash.replace(/\\"/g, '"');
-        } else if (typeof arr === 'undefined') {
-            arrOrString = '';
-        } else {
-            arrOrString = '["' + arr + '"]';
-        }
-        console.log('formatArray arrOrString: ' + arrOrString + ' | arr: ' + arr);
-        return arrOrString;
     },
     formatArrayToOr(arr) {
         let formated = arr.map(ar => {
