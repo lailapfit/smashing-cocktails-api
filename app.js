@@ -25,9 +25,9 @@ app.use('/spirit', spiritRouter);
 
 app.get('/', (req, res) => {
   if (NODE_ENV === 'production') {
-    res.send('SMASHING COCKTAILS API v1.0.1!');
+    res.send('SMASHING COCKTAILS API v1.0.2!');
   } else if (NODE_ENV === 'test') {
-    res.send('SMASHING COCKTAILS v1.4.6! Node Env: ' + process.env.NODE_ENV + ' Port: ' + process.env.PORT);
+    res.send('SMASHING COCKTAILS v1.4.9! Node Env: ' + process.env.NODE_ENV + ' Port: ' + process.env.PORT);
   }
 });
 
@@ -37,14 +37,6 @@ app.get('/xss', (req, res) => {
 });
 
 app.use(function errorHandler(error, req, res, next) {
-  // let response;
-  // if (NODE_ENV === 'production') {
-  //   console.log('here');
-  //   response = { error: { message: 'server error' } }
-  // } else {
-  //   console.error(error)
-  //   response = { message: error.message, error };
-  // }
   console.error(error)
   let response = { message: error.message, error };
   res.status(500).json(response);

@@ -51,6 +51,7 @@ const RecipeService = {
         return knex('recipe').returning('*').where({id: id}).update(data);
     },
     getRecipeByIngredient(knex, ingredient) {
+        console.log('getRecipeByIngredient ingredient: ' + ingredient);
         return knex.raw("select DISTINCT ON(id) id, * from recipe,jsonb_array_elements_text(recipe.ingredients) as ingredient where ingredient like '%" + ingredient + "%'");
     },
     getRecipeByIngredients(knex, ingredients) {

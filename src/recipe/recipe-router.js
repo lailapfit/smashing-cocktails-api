@@ -186,36 +186,37 @@ recipeRouter
 .route('/ingredients/:ingredients')
 .all((req, res, next) => {
     let ingredients = req.params.ingredients.includes(',') ? req.params.ingredients.split(',') : req.params.ingredients;
+    console.log('/ingredients : ' + ingredients);
     if (Array.isArray(ingredients)) {
         RecipeService.getRecipeByIngredients(req.app.get('db'), ingredients)
-        .then(ingredients => {
-            if(!ingredients.rowCount > 0) {
+        .then(recipes => {
+            if(!recipes.rowCount > 0) {
                 return res.status(404).json({
                     error: {message: 'Recipe not found'}
                 });
             }
             console.log('getRecipeByIngredient ingredients: ' + ingredients);
-            res.ingredients = ingredients.rows;
+            res.recipes = recipes.rows;
             next();
         })
         .catch(next);
     } else {
         RecipeService.getRecipeByIngredient(req.app.get('db'), ingredients)
-        .then(ingredients => {
-            if(!!ingredients.rowCount > 0) {
+        .then(recipes => {
+            if(!recipes.rowCount > 0) {
                 return res.status(404).json({
                     error: {message: 'Recipe not found'}
                 });
             }
             console.log('getRecipeByIngredient ingredients: ' + ingredients);
-            res.ingredients = ingredients.rows;
+            res.recipes = recipes.rows;
             next();
         })
         .catch(next);
         }
 })
 .get((req, res, next) => {
-    res.json(res.ingredients);
+    res.json(res.recipes);
 })
 
 module.exports = recipeRouter;

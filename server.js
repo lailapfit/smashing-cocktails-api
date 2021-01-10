@@ -6,7 +6,7 @@ const db = knex({
   client: 'pg',
   connection: {
     connectionString: NODE_ENV.toLowerCase() == 'test' ? TEST_DATABASE_URL : DATABASE_URL,
-    ssl: true,
+    ssl: NODE_ENV.toLowerCase() == 'test' ? false : true,
   }
 });
 
